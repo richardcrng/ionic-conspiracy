@@ -5,14 +5,27 @@ interface Props {
   inAConspiracyAgainst?: string
 }
 
-function Role({} : Props) {
-  const [reveal, setReveal] = React.useState(false)
+function Role({ inAConspiracyAgainst } : Props) {
+  const [revealed, setRevealed] = React.useState(false)
 
   return (
     <>
-      <IonButton>Reveal role</IonButton>
+      {revealed && <RoleDeclare inAConspiracyAgainst={inAConspiracyAgainst} />}
+      <IonButton
+        onClick={() => setRevealed(prevState => !prevState)}
+      >
+        {revealed ? 'Hide' : 'Reveal' } role
+        </IonButton>
     </>
   )
+}
+
+function RoleDeclare({ inAConspiracyAgainst } : Props) {
+  if (inAConspiracyAgainst) {
+    return <p>You are in a <b>Conspiracy</b> against <b>{inAConspiracyAgainst}</b></p>
+  } else {
+    return <p>You are <b>Innocent</b></p>
+  }
 }
 
 export default Role;

@@ -11,9 +11,9 @@ import Role from './Role'
 
 describe("Reveals and hides role for an innocent player", () => {
   describe('GIVEN that Role is not passed a prop for isInAConspiracyAgainst', () => {
-    let { getByText, getByRole, container, asFragment } = render(<Role inAConspiracyAgainst={undefined} />)
+    let { getByText, getByRole, container, asFragment } = render(<Role />)
     beforeEach(() => {
-      ({ getByText, getByRole, container, asFragment } = render(<Role inAConspiracyAgainst={undefined} />))
+      ({ getByText, getByRole, container, asFragment } = render(<Role />))
     })
 
     it("THEN the player's role is not yet revealed", () => {
@@ -21,7 +21,11 @@ describe("Reveals and hides role for an innocent player", () => {
       expect(container).not.toHaveTextContent(/conspiracy/i)
     })
 
-    describe("WHEN the text 'Reveal role is clicked on", () => {
+    it("AND there is 'reveal role' text shown", () => {
+      expect(container).toHaveTextContent(/reveal role/i)
+    })
+
+    describe("WHEN the text 'reveal role' is clicked on", () => {
       beforeEach(() => {
         fireEvent.click(getByText(/reveal role/i))
       })
@@ -30,17 +34,21 @@ describe("Reveals and hides role for an innocent player", () => {
         expect(container).toHaveTextContent(/innocent/i)
         expect(container).not.toHaveTextContent(/conspiracy/i)
       })
+
+      it("AND there is 'hide role' text shown", () => {
+        expect(container).toHaveTextContent(/hide role/i)
+      })
+
+      describe("AND the text 'hide role' is clicked on", () => {
+        beforeEach(() => {
+          fireEvent.click(getByText(/hide role/i))
+        })
+
+        it("THEN the player's role is hidden again", () => {
+          expect(container).not.toHaveTextContent(/innocent/i)
+          expect(container).not.toHaveTextContent(/conspiracy/i)
+        })
+      })
     })
   })
 })
-
-// describe('Reveals an innocent player as innocent', () => {
-//   it('When passed undefined', () => {
-//     const { getByText, getByRole, container, asFragment } = render(<Role inAConspiracyAgainst={undefined} />)
-
-//     fireEvent.click(getByText('Reveal role'))
-
-//     expect(container).toHaveTextContent('Innocent')
-//     expect(container).not.toHaveTextContent('Conspiracy')
-//   })
-// })
