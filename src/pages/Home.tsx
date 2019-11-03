@@ -1,6 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonListHeader } from '@ionic/react';
 import React from 'react';
-import ListItemBoolean from '../components/molecules/ListItemBoolean';
+import GroupListItemBooleans from '../components/molecules/GroupListItemBooleans';
 
 const Home: React.FC = () => {
   return (
@@ -13,8 +13,11 @@ const Home: React.FC = () => {
       <IonContent className="ion-padding">
         <IonList>
           <IonListHeader>Player names | Ready status</IonListHeader>
-          <ListItemBoolean boolean>Richard</ListItemBoolean>
-          <ListItemBoolean>Sam</ListItemBoolean>
+          <GroupListItemBooleans data={[
+            ['Richard', true],
+            ['Johanna', false],
+            ['Monterey', true]
+          ]} />
         </IonList>
       </IonContent>
     </IonPage>
