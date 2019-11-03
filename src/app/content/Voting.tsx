@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import GroupListItemBooleans from '../../lib/molecules/GroupListItemBooleans';
-import { IonButton, IonList, IonListHeader, IonItem } from '@ionic/react';
+import { IonButton, IonList, IonItem } from '@ionic/react';
 import { checkboxOutline } from 'ionicons/icons'
 import CentreBottom from '../../lib/atoms/CentreBottom';
 
