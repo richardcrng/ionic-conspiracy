@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { checkmark } from 'ionicons/icons'
-import ListItemIcon from '../../atoms/ListItemIcon';
+import ListItemIcon from '../ListItemIcon';
 
 interface Props {
   boolean?: boolean
