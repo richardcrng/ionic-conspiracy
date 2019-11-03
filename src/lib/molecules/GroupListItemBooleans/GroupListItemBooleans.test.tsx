@@ -13,7 +13,7 @@ let container: HTMLElement
 let getByText: (text: Matcher, options?: MatcherOptions | undefined) => HTMLElement
 let getByTestId: (text: Matcher, options?: MatcherOptions | undefined) => HTMLElement
 
-describe('It converts', () => {
+describe('It converts an array of data into an appropriate list of elements', () => {
   describe('GIVEN an array of data with no ids', () => {
     beforeEach(() => {
       const data: [string, boolean][] = [
