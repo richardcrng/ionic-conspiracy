@@ -2,12 +2,13 @@
 import React from 'react'
 
 // import react-testing methods
-import { render, fireEvent, waitForElement, getByTitle, Matcher, MatcherOptions, queryByTestId } from '@testing-library/react'
+import { render, fireEvent, waitForElement, getByTitle, Matcher, MatcherOptions, queryByTestId, getByLabelText, getAllByTestId } from '@testing-library/react'
 
 // add custom jest matchers from jest-dom
 import '@testing-library/jest-dom/extend-expect'
 
 import ListItemIcon from './ListItemIcon'
+import { IoMdCheckbox } from 'react-icons/io';
 
 let container: HTMLElement
 let getByText: (text: Matcher, options?: MatcherOptions | undefined) => HTMLElement
@@ -47,23 +48,41 @@ describe("ListItemIcon shows its children", () => {
   })
 })
 
-describe("ListItemIcon shows an IonIcon", () => {
-  describe("WHEN ListItemIcon is passed an icon prop", () => {
+describe("ListItemIcon shows an IonIcon when passed a string icon prop", () => {
+  describe("WHEN ListItemIcon is passed an icon prop string", () => {
     beforeEach(() => {
       ({ getByTestId, container } = render(
         <ListItemIcon icon='checkbox'>
           Richard
-      </ListItemIcon>
+        </ListItemIcon>
       ))
     })
 
-    test("THEN it shows an icon", () => {
+    test("THEN it shows one icon", () => {
       expect(getByTestId('icon-of-ListItemIcon')).toBeDefined()
+      expect(getAllByTestId(container, 'icon-of-ListItemIcon')).toHaveLength(1)
     })
 
     test("AND it implements the required ion-icon API for the given icon at the end slot", () => {
       expect(getByTestId('icon-of-ListItemIcon')).toHaveAttribute('name', 'checkbox')
       expect(getByTestId('icon-of-ListItemIcon')).toHaveAttribute('slot', 'end')
+    })
+  })
+})
+
+describe("ListItemIcon shows a React icon when passed it as an icon prop", () => {
+  describe("WHEN ListItemIcon is passed an icon prop component", () => {
+    beforeEach(() => {
+      ({ getByTestId, container } = render(
+        <ListItemIcon icon={IoMdCheckbox}>
+          Richard
+        </ListItemIcon>
+      ))
+    })
+
+    test("THEN it shows one icon", () => {
+      expect(getByTestId('icon-of-ListItemIcon')).toBeDefined()
+      expect(getAllByTestId(container, 'icon-of-ListItemIcon')).toHaveLength(1)
     })
   })
 })
