@@ -1,3 +1,4 @@
+import * as R from 'ramda'
 import React, { ReactNode } from 'react';
 import { checkmark } from 'ionicons/icons'
 import ListItemIcon from '../ListItemIcon';
@@ -5,11 +6,13 @@ import ListItemIcon from '../ListItemIcon';
 interface Props {
   boolean?: boolean
   children?: ReactNode
+  icon?: { ios: string, md: string }
 }
 
-function ListItemBoolean({ boolean, children } : Props) {
+function ListItemBoolean({ boolean, children, icon } : Props) {
+  const iconToUse = R.defaultTo(checkmark, icon)
   return (
-    <ListItemIcon icon={boolean ? checkmark : undefined}>
+    <ListItemIcon icon={boolean ? iconToUse : undefined}>
       {children}
     </ListItemIcon>
   )

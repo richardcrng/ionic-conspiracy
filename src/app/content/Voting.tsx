@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import GroupListItemBooleans from '../../lib/molecules/GroupListItemBooleans';
-import { IonButton } from '@ionic/react';
+import { IonButton, IonList, IonListHeader } from '@ionic/react';
+import { checkboxOutline } from 'ionicons/icons'
 import CentreBottom from '../../lib/atoms/CentreBottom';
 
 interface Props {
@@ -16,7 +17,10 @@ function Voting({ data, activeButton } : Props) {
 
   return (
     <>
-      <GroupListItemBooleans data={data} />
+      <IonList>
+        <IonListHeader>Player list</IonListHeader>
+        <GroupListItemBooleans data={data} icon={checkboxOutline} />
+      </IonList>
       <CentreBottom>
         {buttons.map(([text, fill]) => (
           <IonButton
