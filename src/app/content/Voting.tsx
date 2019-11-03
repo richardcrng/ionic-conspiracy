@@ -4,7 +4,7 @@ import { IonButton } from '@ionic/react';
 
 interface Props {
   data: [ReactNode, boolean][],
-  activeButton: 'conspiracy' | 'noConspiracy' | undefined
+  activeButton?: 'conspiracy' | 'noConspiracy'
 }
 
 function Voting({ data, activeButton } : Props) {
