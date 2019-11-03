@@ -2,7 +2,7 @@
 import React from 'react'
 
 // import react-testing methods
-import { render, fireEvent, waitForElement, getByTitle, Matcher, MatcherOptions, queryByTestId, getByLabelText, getAllByTestId } from '@testing-library/react'
+import { render, fireEvent, waitForElement, getByTitle, Matcher, MatcherOptions, queryByTestId, getByLabelText, getAllByTestId, queryAllByTestId } from '@testing-library/react'
 
 // add custom jest matchers from jest-dom
 import '@testing-library/jest-dom/extend-expect'
@@ -23,8 +23,8 @@ describe('ListItemBoolean shows a check icon dependent on the passed boolean', (
       ))
     })
 
-    test('THEN it shows a check icon using IonIcons by default', () => {
-      expect(getByTestId('icon-of-ListItemIcon')).toHaveAttribute('name', 'checkmark')
+    test('THEN it shows one icon', () => {
+      expect(queryAllByTestId(container, 'icon-of-ListItemIcon')).toHaveLength(1)
     })
   })
 
@@ -37,7 +37,7 @@ describe('ListItemBoolean shows a check icon dependent on the passed boolean', (
       ))
     })
 
-    test('THEN it does not show a check icon', () => {
+    test('THEN it does not show an icon', () => {
       expect(queryByTestId(container, 'icon-of-ListItemIcon')).toBeNull()
     })
   })
@@ -51,7 +51,7 @@ describe('ListItemBoolean shows a check icon dependent on the passed boolean', (
       ))
     })
 
-    test('THEN it does not show a check icon', () => {
+    test('THEN it does not show an icon', () => {
       expect(queryByTestId(container, 'icon-of-ListItemIcon')).toBeNull()
     })
   })

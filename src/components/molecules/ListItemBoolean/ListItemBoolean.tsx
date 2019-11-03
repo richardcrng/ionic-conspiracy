@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { checkmark } from 'ionicons/icons'
 import ListItemIcon from '../../atoms/ListItemIcon';
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
 
 function ListItemBoolean({ boolean, children } : Props) {
   return (
-    <ListItemIcon icon={boolean ? 'checkmark' : undefined}>
+    <ListItemIcon icon={boolean ? checkmark : undefined}>
       {children}
     </ListItemIcon>
   )
