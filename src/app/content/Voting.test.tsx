@@ -24,7 +24,7 @@ describe('It converts an array of data into appropriate elements', () => {
       ({ container, getByText } = render(<Voting data={data} />))
     })
 
-    test('THEN it renders all of the text from the first element of each element in the array', () => {
+    test('AND it renders all of the text from the first element of each element in the array', () => {
       expect(getByText('Richard')).toBeDefined()
       expect(getByText('Gregor')).toBeDefined()
       expect(getByText('Jules')).toBeDefined()

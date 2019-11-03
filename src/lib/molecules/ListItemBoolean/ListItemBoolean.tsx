@@ -7,12 +7,13 @@ interface Props {
   boolean?: boolean
   children?: ReactNode
   icon?: { ios: string, md: string }
+  lines?: "full" | "inset" | "none"
 }
 
-function ListItemBoolean({ boolean, children, icon } : Props) {
+function ListItemBoolean({ boolean, children, icon, lines } : Props) {
   const iconToUse = R.defaultTo(checkmark, icon)
   return (
-    <ListItemIcon icon={boolean ? iconToUse : undefined}>
+    <ListItemIcon icon={boolean ? iconToUse : undefined} lines={lines}>
       {children}
     </ListItemIcon>
   )

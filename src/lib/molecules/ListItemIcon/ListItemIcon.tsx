@@ -7,11 +7,12 @@ type IconIdentifier = string | IconType | { ios: string, md: string }
 interface Props {
   children?: React.ReactNode
   icon?: IconIdentifier
+  lines?: "full" | "inset" | "none"
 }
 
-function ListItemIcon({ children, icon } : Props) {
+function ListItemIcon({ children, icon, lines } : Props) {
   return (
-    <IonItem>
+    <IonItem lines={lines}>
       <IonLabel>{children}</IonLabel>
       {icon && <Icon icon={icon} /> }
     </IonItem>
