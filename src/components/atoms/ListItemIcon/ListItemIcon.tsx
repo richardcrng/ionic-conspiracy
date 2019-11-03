@@ -3,15 +3,16 @@ import { IonItem, IonLabel, IonIcon } from '@ionic/react';
 
 interface Props {
   children?: React.ReactNode
+  icon?: string
 }
 
-function ListItemIconBoolean({ children } : Props) {
+function ListItemIcon({ children, icon } : Props) {
   return (
     <IonItem>
       <IonLabel>{children}</IonLabel>
-      <IonIcon name='checkmark' slot='end' />
+      {icon && <IonIcon data-testid='icon-of-ListItemIcon' name={icon} slot='end' />}
     </IonItem>
   )
 }
 
-export default ListItemIconBoolean;
+export default ListItemIcon;
