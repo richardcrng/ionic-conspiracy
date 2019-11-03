@@ -9,6 +9,7 @@ import '@testing-library/jest-dom/extend-expect'
 
 import ListItemIcon from './ListItemIcon'
 import { IoMdCheckbox } from 'react-icons/io';
+import { checkbox } from 'ionicons/icons'
 
 let container: HTMLElement
 let getByText: (text: Matcher, options?: MatcherOptions | undefined) => HTMLElement
@@ -44,6 +45,27 @@ describe("ListItemIcon shows its children", () => {
     it("Passes down children as a more complex node", () => {
       expect(container).toHaveTextContent('Header')
       expect(container).toHaveTextContent('Paragraph')
+    })
+  })
+})
+
+describe("ListItemIcon shows an IonIcon when passed an ionicon object", () => {
+  describe("WHEN ListItemIcon is passed an icon prop string", () => {
+    beforeEach(() => {
+      ({ getByTestId, container } = render(
+        <ListItemIcon icon={checkbox}>
+          Richard
+        </ListItemIcon>
+      ))
+    })
+
+    test("THEN it shows one icon", () => {
+      expect(getByTestId('icon-of-ListItemIcon')).toBeDefined()
+      expect(getAllByTestId(container, 'icon-of-ListItemIcon')).toHaveLength(1)
+    })
+
+    test("AND it puts the given icon at the end slot", () => {
+      expect(getByTestId('icon-of-ListItemIcon')).toHaveAttribute('slot', 'end')
     })
   })
 })
